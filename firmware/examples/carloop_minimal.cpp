@@ -8,6 +8,8 @@
  * Distributed under the MIT license. See LICENSE.txt for more details.
  */
 
+#pragma SPARK_NO_PREPROCESSOR
+
 #include "application.h"
 #include "carloop/carloop.h"
 
