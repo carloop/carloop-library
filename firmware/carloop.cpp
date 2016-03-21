@@ -11,19 +11,19 @@
 std::function<void(char)> serialHandler;
 
 template<typename Config>
-Carloop<Config>::Carloop() :
-    canDriver(Config::CAN_PINS),
+Carloop<Config>::Carloop()
+    : canDriver(Config::CAN_PINS),
     canSpeed(Config::CAN_DEFAULT_SPEED)
 {
 }
 
-template<typename Config>
+template <typename Config>
 void Carloop<Config>::setCANSpeed(uint32_t canSpeed)
 {
     this->canSpeed = canSpeed;
 }
 
-template<typename Config>
+template <typename Config>
 void Carloop<Config>::begin(CarloopFeatures_e features)
 {
     this->features = features;
@@ -44,7 +44,7 @@ void Carloop<Config>::begin(CarloopFeatures_e features)
     }
 }
 
-template<typename Config>
+template <typename Config>
 void Carloop<Config>::update()
 {
     if(hasBattery())
@@ -53,25 +53,25 @@ void Carloop<Config>::update()
     }
 }
 
-template<typename Config>
+template <typename Config>
 CANChannel &Carloop<Config>::can()
 {
     return canDriver;
 }
 
-template<typename Config>
+template <typename Config>
 TinyGPSPlus &Carloop<Config>::gps()
 {
     return gpsDriver;
 }
 
-template<typename Config>
+template <typename Config>
 float Carloop<Config>::battery()
 {
     return batteryVoltage;
 }
 
-template<typename Config>
+template <typename Config>
 void Carloop<Config>::enableCAN()
 {
     pinMode(Config::CAN_ENABLE_PIN, OUTPUT);
@@ -79,14 +79,14 @@ void Carloop<Config>::enableCAN()
     canDriver.begin(canSpeed);
 }
 
-template<typename Config>
+template <typename Config>
 void Carloop<Config>::disableCAN()
 {
     canDriver.end();
     digitalWrite(Config::CAN_ENABLE_PIN, Config::CAN_ENABLE_INACTIVE);
 }
 
-template<typename Config>
+template <typename Config>
 void Carloop<Config>::enableGPS()
 {
     pinMode(Config::GPS_ENABLE_PIN, OUTPUT);
@@ -100,21 +100,21 @@ void Carloop<Config>::enableGPS()
     };
 }
 
-template<typename Config>
+template <typename Config>
 void Carloop<Config>::disableGPS()
 {
     digitalWrite(Config::GPS_ENABLE_PIN, Config::GPS_ENABLE_INACTIVE);
     serialHandler = nullptr;
 }
 
-template<typename Config>
+template <typename Config>
 void Carloop<Config>::enableBattery()
 {
     pinMode(Config::BATTERY_PIN, INPUT);
     readBattery();
 }
 
-template<typename Config>
+template <typename Config>
 float Carloop<Config>::readBattery()
 {
     static constexpr auto MAX_ANALOG_VALUE = 4096;
@@ -123,19 +123,19 @@ float Carloop<Config>::readBattery()
     return adcValue * MAX_ANALOG_VOLTAGE / MAX_ANALOG_VALUE * Config::BATTERY_FACTOR;
 }
 
-template<typename Config>
+template <typename Config>
 bool Carloop<Config>::hasCAN()
 {
     return Config::FEATURES & features & CARLOOP_CAN;
 }
 
-template<typename Config>
+template <typename Config>
 bool Carloop<Config>::hasGPS()
 {
     return Config::FEATURES & features & CARLOOP_GPS;
 }
 
-template<typename Config>
+template <typename Config>
 bool Carloop<Config>::hasBattery()
 {
     return Config::FEATURES & features & CARLOOP_BATTERY;
