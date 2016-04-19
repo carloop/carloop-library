@@ -8,12 +8,11 @@
  * Distributed under the MIT license. See LICENSE.txt for more details.
  */
 
-#pragma SPARK_NO_PREPROCESSOR
-
 #include "application.h"
 #include "carloop/carloop.h"
 
 void updateCanMessageCount();
+void printValuesAtInterval();
 void printValues();
 void printFloat(float val, bool valid, int len, int prec);
 void printDateTime(TinyGPSDate &d, TinyGPSTime &t);
@@ -21,18 +20,6 @@ void printDateTime(TinyGPSDate &d, TinyGPSTime &t);
 Carloop<CarloopRevision2> carloop;
 
 int canMessageCount = 0;
-
-template <typename Fn>
-void setInterval(Fn function, unsigned long interval)
-{
-    static unsigned long lastDisplay = 0;
-    if(millis() - lastDisplay < 1000)
-    {
-        return;
-    }
-    lastDisplay = millis();
-    function();
-}
 
 void setup()
 {
@@ -44,7 +31,7 @@ void loop()
 {
     carloop.update();
     updateCanMessageCount();
-    setInterval([] { printValues(); }, 1000);
+    printValuesAtInterval();
 }
 
 void updateCanMessageCount()
@@ -54,6 +41,18 @@ void updateCanMessageCount()
     {
         canMessageCount++;
     }
+}
+
+void printValuesAtInterval() {
+    static const unsigned long interval = 1000;
+
+    static unsigned long lastDisplay = 0;
+    if(millis() - lastDisplay < 1000)
+    {
+        return;
+    }
+    lastDisplay = millis();
+    printValues();
 }
 
 void printValues()
