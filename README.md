@@ -84,7 +84,7 @@ void loop() {
 
 ### `gps()`
 
-If you have a GPS connected to the Carloop, you access GPS function through the TinyGPS object with `carlopp.gps()`
+If you have a GPS connected to the Carloop, you access GPS function through the TinyGPS object with `carloop.gps()`
 
 ```
 float lat = carloop.gps().location.lat();
