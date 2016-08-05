@@ -2,7 +2,9 @@
 
 Make apps for your car using signals from OBD-II, CAN and GPS. Publish data online using the Particle platform.
 
-### _Don't have one yet? [Buy a Carloop](https://www.carloop.io/buy)_
+The [hardware](https://github.com/carloop/hardware) and [software](https://github.com/carloop/carloop-library) is all open source!
+
+### _Don't have one yet? [Buy a Carloop](https://www.carloop.io/buy)
 ### _Have questions? [Ask the Carloop community.](https://community.carloop.io)_
 
 ## Usage
