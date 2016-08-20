@@ -4,8 +4,9 @@ Make apps for your car using signals from OBD-II, CAN and GPS. Publish data onli
 
 The [hardware](https://github.com/carloop/hardware) and [software](https://github.com/carloop/carloop-library) is all open source!
 
-### _Don't have one yet? [Buy a Carloop](https://www.carloop.io/buy)_
+### _Don't have one yet? [Buy a Carloop here](https://store.carloop.io)_
 ### _Have questions? [Ask the Carloop community.](https://community.carloop.io)_
+### _Want to learn about Car Hacking? [Read this book](https://store.carloop.io/products/car-hackers-handbook)_
 
 ## Usage
 
