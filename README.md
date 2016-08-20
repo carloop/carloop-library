@@ -37,7 +37,7 @@ See complete examples in [the examples directory.](/firmware/examples)
 
 Learn about programming with the Particle platform at <https://docs.particle.io>
 
-If you want to add a GPS, we recommend [the GP-735](https://www.sparkfun.com/products/13670) and [a small jumper wire](https://www.sparkfun.com/products/574).
+If you want to add a GPS, we recommend [the GP-735](https://store.carloop.io/products/carloop-gps-with-cable)
 
 ## Documentation
 
