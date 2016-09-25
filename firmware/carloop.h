@@ -4,6 +4,7 @@
  *
  * Distributed under the MIT license. See LICENSE.txt for more details.
  */
+#pragma once
 #include "application.h"
 #include "TinyGPS++.h"
 
