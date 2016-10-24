@@ -112,5 +112,7 @@ float battVoltage = carloop.battery();
 
 ## License
 
-Copyright 2016 Julien Vanier. Distributed under the MIT license. See [LICENSE](/license) for details.
+Copyright 2016 1000 Tools, Inc.
+
+Distributed under the MIT license. See [LICENSE](/license) for details.
 
