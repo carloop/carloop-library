@@ -175,6 +175,7 @@ bool TinyGPSPlus::endOfTermHandler()
             case GPS_SENTENCE_GPRMC:
                 date.commit();
                 time.commit();
+                fix = sentenceHasFix;
                 if(sentenceHasFix)
                 {
                     location.commit();
@@ -184,6 +185,7 @@ bool TinyGPSPlus::endOfTermHandler()
                 break;
             case GPS_SENTENCE_GPGGA:
                 time.commit();
+                fix = sentenceHasFix;
                 if(sentenceHasFix)
                 {
                     location.commit();
