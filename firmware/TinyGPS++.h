@@ -269,6 +269,7 @@ public:
     uint32_t sentencesWithFix() const { return sentencesWithFixCount; }
     uint32_t failedChecksum() const { return failedChecksumCount; }
     uint32_t passedChecksum() const { return passedChecksumCount; }
+    bool isFixed() const { return fix; }
 
 private:
     enum
@@ -286,6 +287,7 @@ private:
     uint8_t curTermNumber;
     uint8_t curTermOffset;
     bool sentenceHasFix;
+    bool fix; // fix state of last NMEA message containing fix
 
     // custom element support
     friend class TinyGPSCustom;
