@@ -355,6 +355,7 @@ void TinyGPSLocation::commit()
     rawLngData = rawNewLngData;
     lastCommitTime = millis();
     valid = updated = true;
+    if (rawLngData.deg == 0.0 || rawLatData.deg == 0.0) { valid = false; }
 }
 
 void TinyGPSLocation::setLatitude(const char *term)
@@ -386,6 +387,7 @@ void TinyGPSDate::commit()
     date = newDate;
     lastCommitTime = millis();
     valid = updated = true;
+    if (date == 0) { valid = false; }
 }
 
 void TinyGPSTime::commit()
@@ -393,6 +395,7 @@ void TinyGPSTime::commit()
     time = newTime;
     lastCommitTime = millis();
     valid = updated = true;
+    if (time == 0) { valid = false; }
 }
 
 void TinyGPSTime::setTime(const char *term) { newTime = (uint32_t)TinyGPSPlus::parseDecimal(term); }
