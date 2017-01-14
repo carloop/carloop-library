@@ -1,8 +1,0 @@
-{
-    "name": "carloop",
-    "version": "1.0.0",
-    "author": "Julien Vanier <julien@carloop.io>",
-    "license": "MIT",
-    "description": "Carloop.io library for the Particle platform"
-}
-
