@@ -29,7 +29,7 @@ void loop()
 }
 ```
 
-See complete examples in [the examples directory.](/firmware/examples)
+See complete examples in [the examples directory.](/examples)
 
 ## Getting started
 
@@ -95,7 +95,7 @@ float lng = carloop.gps().location.lng();
 bool gpsValid = carloop.gps().location.isValid();
 ```
 
-[See the TinyGPS library for detailed examples.](https://github.com/codegardenllc/tiny_gps_plus/tree/master/firmware/examples)
+[See the TinyGPS library for detailed examples.](https://github.com/codegardenllc/tiny_gps_plus)
 
 ### `battery()`
 
