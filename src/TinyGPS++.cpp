@@ -31,6 +31,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #define _GPRMCterm "GPRMC"
 #define _GPGGAterm "GPGGA"
+#define _GNRMCterm "GNRMC"
+#define _GNGGAterm "GNGGA"
 
 // Converts degrees to radians.
 #define radians(angleDegrees) ((angleDegrees)*M_PI / 180.0)
@@ -215,9 +217,9 @@ bool TinyGPSPlus::endOfTermHandler()
     // the first term determines the sentence type
     if(curTermNumber == 0)
     {
-        if(!strcmp(term, _GPRMCterm))
+        if(!strcmp(term, _GPRMCterm) || !strcmp(term, _GNRMCterm))
             curSentenceType = GPS_SENTENCE_GPRMC;
-        else if(!strcmp(term, _GPGGAterm))
+        else if(!strcmp(term, _GPGGAterm) || !strcmp(term, _GNGGAterm))
             curSentenceType = GPS_SENTENCE_GPGGA;
         else
             curSentenceType = GPS_SENTENCE_OTHER;
