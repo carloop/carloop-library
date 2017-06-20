@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - 6
+install:
+  - npm install -g particle-cli
+  - mkdir ~/.particle && echo '{"access_token": "$PARTICLE_TOKEN"}' > ~/.particle/particle.config.json
+script:
+  - ./compile_examples.sh
+env:
+  # PARTICLE_TOKEN
+  - secure: "4i01XfTTn/1wzPw+AJR9Ap5GEePxajRYI08nCv0GWBU01m66192pim0tERYQM8Mo79VklK/4RXxGl0ieDi5eZtu28DwKHOgJ5rN2TUjqVhFYxsspRJ0OEtmKbsghR79s/Y4JBGUOwn5aE3wbQZL10MdF/z7n2cmrg06oVLoGxxlil50gnTt+cFbdzQuCIkiXKawkJG9UOePaPv1sYYa4HwR72AC+7H4+FNVCNGSJZockyN+EiwICXjrat5CLQBuRznf2gzV0XvGNOKt658GHEyyU+9fGqE8ttO6TOXZFt8TF9/dz3O4KULti874rkGUIq5IsQyEXFR7/PWyRRd033x2nn/aSjxxRTx2IhBGGi4ryhiBnb+nBLfu4cT3onrzVf1WKlyIMUX8oiwsuDp4h9dzaTUgvoeCH9sC8Nzloy1Sd1CL4yj6llqfU6QusrdKknyE8G/r02dHY6/URtKasRcYnxe/cu6h5tYp0OwWX/3XyTy0DeCJgGkv67VPLP8SitiZ+nML0QLhUqHUj3h5k07Sp+nSyp7Sd3bSRzGcmbk9TVOUFUEp6y46f8qp7W/l7VstDKiV+lDLEvbzw80QpWN82rCq+lqTXDlNlApRmYcL+cdDow2rcJvbCZqYmKGsRAET8Cu5lXwoh4XbPujY65fSuyW+Oy3GU93UMrFIGwNU="

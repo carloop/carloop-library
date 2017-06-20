@@ -1,4 +1,5 @@
 # [Carloop](https://www.carloop.io)
+[![Build Status](https://travis-ci.org/carloop/carloop-library.svg?branch=master)](https://travis-ci.org/carloop/carloop-library)
 
 Make apps for your car using signals from OBD-II, CAN and GPS. Publish data online using the Particle platform.
 
