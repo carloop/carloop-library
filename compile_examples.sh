@@ -2,7 +2,7 @@
 # Compile each library example as a test
 
 set -xe
-cd `dirname $0`
+
 PLATFORMS="photon electron"
 EXAMPLES=`ls examples`
 
