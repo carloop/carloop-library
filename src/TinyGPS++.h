@@ -271,6 +271,40 @@ public:
     uint32_t passedChecksum() const { return passedChecksumCount; }
     bool isFixed() const { return fix; }
 
+    // Additional methods for thread synchronization
+#if PLATFORM_THREADING
+	os_mutex_recursive_t get_mutex()
+	{
+        if (mutex == nullptr) {
+            os_mutex_recursive_create(&mutex);            
+        }
+		return mutex;
+	}
+#endif
+
+	bool try_lock()
+	{
+#if PLATFORM_THREADING
+		return !os_mutex_recursive_trylock(get_mutex());
+#else
+		return true;
+#endif
+	}
+
+	void lock()
+	{
+#if PLATFORM_THREADING
+		os_mutex_recursive_lock(get_mutex());
+#endif
+	}
+
+	void unlock()
+	{
+#if PLATFORM_THREADING
+		os_mutex_recursive_unlock(get_mutex());
+#endif
+	}
+
 private:
     enum
     {
@@ -304,6 +338,10 @@ private:
     // internal utilities
     int fromHex(char a);
     bool endOfTermHandler();
+
+#if PLATFORM_THREADING
+    os_mutex_recursive_t mutex;
+#endif
 };
 
 #endif // def(__TinyGPSPlus_h)

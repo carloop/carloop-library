@@ -32,9 +32,6 @@ struct CarloopRevision2
     static constexpr auto GPS_ENABLE_PIN = A0;
     static constexpr auto GPS_ENABLE_ACTIVE = HIGH;
     static constexpr auto GPS_ENABLE_INACTIVE = LOW;
-    // Serial cannot be configured because of dependency on the serialEvent1
-    // handler
-    // constexpr auto &GPS_SERIAL = Serial1;
 
     static constexpr auto FEATURES = CARLOOP_CAN | CARLOOP_GPS | CARLOOP_BATTERY;
 };
@@ -67,10 +64,13 @@ public:
     bool hasBattery();
 
 private:
+    void receiveSerialChars();
+
     CANChannel canDriver;
     uint32_t canSpeed;
 
     TinyGPSPlus gpsDriver;
+    Thread gpsSerialThread;
 
     float batteryVoltage;
 

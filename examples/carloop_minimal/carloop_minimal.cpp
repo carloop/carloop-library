@@ -58,13 +58,17 @@ void printValuesAtInterval() {
 void printValues()
 {
     auto &gps = carloop.gps();
-    Serial.printf("Battery voltage: %12f ", carloop.battery());
-    Serial.printf("CAN messages: %12d ", canMessageCount);
-    Serial.printf("GPS %6d chars: ", gps.charsProcessed());
-    printFloat(gps.location.lat(), gps.location.isValid(), 11, 6);
-    printFloat(gps.location.lng(), gps.location.isValid(), 12, 6);
-    printDateTime(gps.date, gps.time);
-    Serial.println("");
+    // Ensure that the GPS state doesn't change while printing
+    WITH_LOCK(gps) {
+        Serial.printf("Battery voltage: %12f ", carloop.battery());
+        Serial.printf("CAN messages: %12d ", canMessageCount);
+        Serial.print("GPS ");
+        printFloat(gps.location.lat(), gps.location.isValid(), 11, 6);
+        printFloat(gps.location.lng(), gps.location.isValid(), 12, 6);
+        printDateTime(gps.date, gps.time);
+        Serial.printf("%6d chars, %d checksum error", gps.charsProcessed(), gps.failedChecksum());
+        Serial.println("");
+    }
 }
 
 void printFloat(float val, bool valid, int len, int prec)

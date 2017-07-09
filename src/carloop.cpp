@@ -8,8 +8,6 @@
 #include "carloop.h"
 #include <functional>
 
-std::function<void(char)> serialHandler;
-
 template<typename Config>
 Carloop<Config>::Carloop()
     : canDriver(Config::CAN_PINS),
@@ -94,17 +92,16 @@ void Carloop<Config>::enableGPS()
 
     Serial1.begin(Config::GPS_BAUD_RATE);
 
-    serialHandler = [this](char c)
-    {
-        gpsDriver.encode(c);
-    };
+    if (!gpsSerialThread.is_valid()) {
+        // Start a thread that will run this->receiveSerialChars()
+        gpsSerialThread = Thread("gps_serial", [this]() { receiveSerialChars(); });
+    }
 }
 
 template <typename Config>
 void Carloop<Config>::disableGPS()
 {
     digitalWrite(Config::GPS_ENABLE_PIN, Config::GPS_ENABLE_INACTIVE);
-    serialHandler = nullptr;
 }
 
 template <typename Config>
@@ -142,15 +139,18 @@ bool Carloop<Config>::hasBattery()
 }
 
 // Receive bytes from the GPS
-void serialEvent1()
+template <typename Config>
+void Carloop<Config>::receiveSerialChars()
 {
-    while(Serial1.available())
-    {
-        char c = Serial1.read();
-        if(serialHandler)
-        {
-            serialHandler(c);
+    while(true) {
+        WITH_LOCK(gpsDriver) {
+            while(Serial1.available())
+            {
+                char c = Serial1.read();
+                gpsDriver.encode(c);
+            }
         }
+        delay(1);
     }
 }
 

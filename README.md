@@ -88,12 +88,14 @@ void loop() {
 
 ### `gps()`
 
-If you have a GPS connected to the Carloop, you access GPS function through the TinyGPS object with `carloop.gps()`
+If you have a GPS connected to the Carloop, you access GPS function through the TinyGPS object with `carloop.gps()`. To ensure that the GPS location doesn't update in the middle of reading it, surround the block where you extract the GPS data in a `WITH_LOCK` block.
 
 ```
-float lat = carloop.gps().location.lat();
-float lng = carloop.gps().location.lng();
-bool gpsValid = carloop.gps().location.isValid();
+WITH_LOCK(carloop.gps()) {
+  float lat = carloop.gps().location.lat();
+  float lng = carloop.gps().location.lng();
+  bool gpsValid = carloop.gps().location.isValid();
+}
 ```
 
 [See the TinyGPS library for detailed examples.](https://github.com/codegardenllc/tiny_gps_plus)
@@ -113,5 +115,5 @@ float battVoltage = carloop.battery();
 
 ## License
 
-Copyright 2016 Julien Vanier. Distributed under the MIT license. See [LICENSE](/license) for details.
+Copyright 2016-2017 1000 Tools, Inc. Distributed under the MIT license. See [LICENSE](/license) for details.
 
