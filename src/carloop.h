@@ -69,8 +69,8 @@ private:
     CANChannel canDriver;
     uint32_t canSpeed;
 
+    Thread *gpsSerialThread;
     TinyGPSPlus gpsDriver;
-    Thread gpsSerialThread;
 
     float batteryVoltage;
 

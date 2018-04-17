@@ -11,7 +11,8 @@
 template<typename Config>
 Carloop<Config>::Carloop()
     : canDriver(Config::CAN_PINS),
-    canSpeed(Config::CAN_DEFAULT_SPEED)
+    canSpeed(Config::CAN_DEFAULT_SPEED),
+    gpsSerialThread(NULL)
 {
 }
 
@@ -92,9 +93,9 @@ void Carloop<Config>::enableGPS()
 
     Serial1.begin(Config::GPS_BAUD_RATE);
 
-    if (!gpsSerialThread.is_valid()) {
+    if (!gpsSerialThread) {
         // Start a thread that will run this->receiveSerialChars()
-        gpsSerialThread = Thread("gps_serial", [this]() { receiveSerialChars(); });
+        gpsSerialThread = new Thread("gps_serial", [this]() { receiveSerialChars(); });
     }
 }
 
