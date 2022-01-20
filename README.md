@@ -38,7 +38,7 @@ See complete examples in [the examples directory.](/examples)
 
 Learn about programming with the Particle platform at <https://docs.particle.io>
 
-If you want to add a GPS, we recommend [the GP-735](https://store.carloop.io/products/carloop-gps-with-cable)
+If you want to add a GPS, get the [Carloop Pro](https://store.carloop.io/products/carloop-pro-1)
 
 ## Documentation
 
